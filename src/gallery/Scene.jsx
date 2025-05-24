@@ -11,9 +11,9 @@ const Scene = () => {
 		<Canvas
 			shadows
 			camera={{
-				fov: 90,
-				position: [0, 15, -20],
-				rotation: [-Math.PI * 0.2, 0, 0],
+				fov: 75,
+				position: [0, 0, 0],
+				rotation: [-Math.PI * 0.5, 0, 0],
 			}}
 		>
 			{/* <OrbitControls /> */}
