@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRoute } from 'wouter';
 import { easing } from 'maath';
 import getUuid from 'uuid-by-string';
 import { useCursor, Image, Text } from '@react-three/drei';
@@ -16,13 +15,9 @@ const Frame = ({
 }) => {
 	const image = useRef();
 	const frame = useRef();
-	const [, params] = useRoute('/item/:id');
-
 	const [hovered, hover] = useState(false);
 	const [rnd] = useState(() => Math.random());
-
 	const name = getUuid(url);
-	const isActive = params?.id === name;
 	useCursor(hovered);
 
 	useFrame((state, delta) => {
@@ -30,11 +25,7 @@ const Frame = ({
 			1.1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 10;
 		easing.damp3(
 			image.current.scale,
-			[
-				0.85 * (!isActive && hovered ? 0.85 : 1),
-				0.9 * (!isActive && hovered ? 0.905 : 1),
-				1,
-			],
+			[0.85 * (hovered ? 0.85 : 1), 0.9 * (hovered ? 0.905 : 1), 1],
 			0.1,
 			delta
 		);
@@ -45,6 +36,7 @@ const Frame = ({
 			delta
 		);
 	});
+
 	return (
 		<group position={position} rotation={rotation}>
 			<mesh
