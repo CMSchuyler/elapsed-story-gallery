@@ -19,29 +19,29 @@ const images = [
   },
   // Left Side 1 (近)
   ...[...Array(10)].map((_, i) => ({
-    position: [-38 - i * 4, 8, 10 + i * 8],
-    rotation: [0, Math.PI / 2.8, 0],
+    position: [-25 - i * 5, 8 + Math.sin(i * 0.5) * 2, 10 + i * 6],
+    rotation: [0, Math.PI / 3, 0],
     url: './photos/3M5A9169.png',
     title: `Left Near ${i + 1}`,
   })),
   // Left Side 2 (远)
   ...[...Array(10)].map((_, i) => ({
-    position: [-35 - i * 4, 8, 40 + i * 8],
-    rotation: [0, Math.PI / 2.9, 0],
+    position: [-20 - i * 5, 8 + Math.cos(i * 0.5) * 2, 30 + i * 6],
+    rotation: [0, Math.PI / 3.5, 0],
     url: './photos/3M5A8385.png',
     title: `Left Far ${i + 1}`,
   })),
   // Right Side 1 (近)
-  ...[...Array(10)].map((_, i) => ({
-    position: [38 + i * 4, 8, 10 + i * 8],
-    rotation: [0, -Math.PI / 2.8, 0],
+  ...[...Array(11)].map((_, i) => ({
+    position: [25 + i * 5, 8 + Math.sin(i * 0.5) * 2, 10 + i * 6],
+    rotation: [0, -Math.PI / 3, 0],
     url: './photos/mmexport1689910425322.jpg',
     title: `Right Near ${i + 1}`,
   })),
   // Right Side 2 (远)
-  ...[...Array(12)].map((_, i) => ({
-    position: [35 + i * 4, 8, 40 + i * 8],
-    rotation: [0, -Math.PI / 2.9, 0],
+  ...[...Array(11)].map((_, i) => ({
+    position: [20 + i * 5, 8 + Math.cos(i * 0.5) * 2, 30 + i * 6],
+    rotation: [0, -Math.PI / 3.5, 0],
     url: './photos/mmexport1689910497995.jpg',
     title: `Right Far ${i + 1}`,
   })),
@@ -57,9 +57,9 @@ const Gallery = () => {
       if (times.length == 0) setTimes([elapsedTime]);
       let delay = 8 + times[0];
       if (elapsedTime < delay) {
-        state.camera.position.z = elapsedTime * (100 / delay);
+        state.camera.position.z = -20 + elapsedTime * (100 / delay);
         state.camera.rotation.x =
-          -Math.PI * 0.5 + (elapsedTime / delay) * Math.PI * 0.5;
+          -Math.PI * 0.2 + (elapsedTime / delay) * Math.PI * 0.1;
       }
     }
   });
